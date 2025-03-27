@@ -173,7 +173,8 @@ with col1:
 
 # 👉 Output Section
 with col2:
-    st.title("🎯 Career Path AI Agent")
+    st.title("CareerWave 🌊")
+    st.write("Your journey, your wave")
 
     if 'goal' in st.session_state and st.session_state['goal']:
         tab1, tab2, tab3, tab4  = st.tabs(["Career Path", "Step Details", "Books", "YouTube Playlists"])
