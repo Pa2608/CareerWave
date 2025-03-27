@@ -1,4 +1,5 @@
 streamlit
+pip==25.0.1 
 groq
 requests
 re
