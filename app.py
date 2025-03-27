@@ -173,8 +173,8 @@ with col1:
 
 # 👉 Output Section
 with col2:
-    st.title("CareerWave 🌊")
-    st.write("Your journey, your wave")
+    st.markdown("<h1 style='text-align: center; font-weight: bold;'>CareerWave 🌊</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; font-weight: bold;'>Your journey, your wave</h3>", unsafe_allow_html=True)
 
     if 'goal' in st.session_state and st.session_state['goal']:
         tab1, tab2, tab3, tab4  = st.tabs(["Career Path", "Step Details", "Books", "YouTube Playlists"])
@@ -241,7 +241,7 @@ with col2:
                             st.markdown(f"🔗 [More Info]({book['link']})")
                         st.markdown("---")
                 else:
-                    st.error("No books found. Try another topic!")
+                    st.error("Issue on deploy time but locally perfect work they suggest book.")
 
         with tab4:            
             topic = st.session_state['goal']
