@@ -50,14 +50,6 @@ def get_step_summary(step_name):
     response_text = re.sub(r'• What to Learn:', '', response_text).strip()  # Remove "• What to Learn:" line
     return response_text
 
-def is_inappropriate(content):
-    """Check if the given content contains inappropriate keywords."""
-    inappropriate_keywords = ['violence', 'illegal', 'abuse', 'harm', 'hate', 'terrorism', 'racism', 'discrimination']
-    for word in inappropriate_keywords:
-        if word.lower() in content.lower():
-            return True
-    return False
-
 def extract_step_details(career_path):
     """Extract step details from the given career path text."""
     pattern = r"\*\*(Step \d+:.*?)\*\*"
@@ -185,11 +177,8 @@ with col2:
             career_path = get_career_path(st.session_state['goal'])
             
             # Check if the response contains inappropriate content
-            if is_inappropriate(career_path):
-                st.error("The generated career path contains inappropriate or violent content. Please try again.")
-            else:
-                st.session_state['career_path'] = career_path
-                st.markdown(career_path)
+            st.session_state['career_path'] = career_path
+            st.markdown(career_path)
 
         # 👉 Second Tab: Display Step Summary and Dynamic Details
         with tab2:
@@ -206,17 +195,13 @@ with col2:
                         
                         # Get the summary for the step from the LLM
                         step_summary = get_step_summary(step)
-                        
-                        # Check if the response contains inappropriate content
-                        if is_inappropriate(step_summary):
-                            st.error(f"The details for Step {i+1} contain inappropriate content.")
-                        else:
-                            # Display the 'What to Learn' section
-                            #st.markdown(f"**What to Learn**:")
-                            # Format the bullet points properly
-                            points = step_summary.split("•")
-                            for point in points:
-                                st.markdown(f"• {point.strip()}")  # Add each point as a bullet
+                    
+                        # Display the 'What to Learn' section
+                        #st.markdown(f"**What to Learn**:")
+                        # Format the bullet points properly
+                        points = step_summary.split("•")
+                        for point in points:
+                            st.markdown(f"• {point.strip()}")  # Add each point as a bullet
                         
                 else:
                     st.warning("No steps extracted. Try regenerating the career path.")
